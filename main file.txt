@@ -1,0 +1,82 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow
+import keras_utils
+import tensorflow.keras.models
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras.datasets import mnist
+from keras.utils.np_utils import to_categorical
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense,Conv2D,MaxPool2D,Flatten
+from tensorflow.keras.callbacks import EarlyStopping,ModelCheckpoint
+# import keras
+
+# from keras.layers import Dropout
+# from keras.utils import np_utils
+# from keras.datasets import mnist
+# from keras.models import Sequential
+# from keras.layers import Dense,Conv2D,MaxPool2D,Flatten
+# from keras.callbacks import EarlyStopping,ModelCheckpoint
+
+print()
+(x_train,y_train),(x_test,y_test)=mnist.load_data()
+print(x_train.shape,y_train.shape,x_test.shape,y_test.shape)
+def input_plot(i):
+    plt.imshow(x_train[i],cmap='binary')
+    # plt.title(y_train[i])
+    # plt.show()
+for i in range(10):
+    input_plot(i)
+
+#preprocess the image
+x_train=x_train.astype(np.float32)/255
+x_test=x_test.astype(np.float32)/255
+
+print(x_train.shape)
+
+
+
+#reshape expland the dumension of the image to (28,28,1)
+
+x_train=np.expand_dims(x_train,-1)
+x_test=np.expand_dims(x_test,-1)
+
+y_train=keras.utils.to_categorical(y_train)
+y_test=keras.utils.to_categorical(y_test)
+print(y_train)
+
+model=Sequential()
+model.add(Conv2D(32,(3,3),input_shape=(28,28,1),activation='relu'))
+model.add(MaxPool2D(2,2))
+
+model.add(Conv2D(32,(3,3),input_shape=(28,28,1),activation='relu'))
+model.add(MaxPool2D((2,2)))
+
+model.add(Flatten())
+
+# model.add(Dropout(rate=0.25))
+model.add(Dense(10,activation='softmax'))
+
+# model.summary()
+
+
+model.compile(optimizer='adam',loss=keras.losses.categorical_crossentropy,metrics=['accuracy'])
+
+es=EarlyStopping(monitor='val_accuracy',min_delta=0.01,patience=4,verbose=1)
+
+mc=ModelCheckpoint('bestmodel.pb',monitor='val_accuracy',verbose=1,save_best_only=True)
+
+cb=[es,mc]
+
+#model Training
+
+his=model.fit(x_train,y_train,epochs=2,validation_split=0.3,callbacks=cb)
+#epoch=50
+print(his)
+model_5=tensorflow.keras.models.load_model('C:/Users/lsuth/PycharmProjects/pythonProject1/bestmodel.pb')
+
+
+score=model_5.evaluate(x_test,y_test)
+
+print(f"the model accuracy is {score[1]}")
