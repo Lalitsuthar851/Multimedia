@@ -1,0 +1,194 @@
+<html>
+<head>
+<style>
+body {
+    color: #fff;
+    overflow-x: hidden;
+    height: 100%;
+    background-color:#607d8b;
+    background-repeat: no-repeat
+}
+
+.main {
+ width:110%;
+
+}
+
+.card1 {
+    background-image: linear-gradient(#2196F3, #81D4FA);
+    padding: 30px 20px 30px 50px;
+
+}
+
+.image1 {
+   position:relative;
+   top:-100px;
+    width: 280px;
+    height: 280px
+}
+
+.large-font {
+     position:relative;
+     top:-240px;
+    font-size: 120px;
+    font-family: Arial
+}
+
+.time {
+position:relative;
+top:-290px;
+    font-size: 22px
+}
+
+.card2 {
+position:relative;
+top:-300px;
+background-color: #607D8B;
+padding: 0px 0px 40px 40px;
+height:60%;
+}
+
+
+
+::placeholder {
+    color: #B0BEC5 !important;
+    opacity: 1
+}
+
+:-ms-input-placeholder {
+    color: #B0BEC5 !important
+}
+
+::-ms-input-placeholder {
+    color: #B0BEC5 !important
+}
+
+
+.light-text {
+    color: #B0BEC5
+}
+#break{
+height:1px;
+border-style:red;
+border-color:red;
+border-width:70px;}
+
+
+.image-animation{position:relative;
+left: 20px;
+animation-name:lalit;
+animation-duration:20s;
+animation-iteration-count:23;
+animation-fill-mode: alternate;
+<!--animation-timing-function: ease-in-out;-->}
+ @keyframes lalit{
+0%{left:10px;
+   top:20px;
+    }
+25%{top:10px;
+     left:500px;
+    }
+50%{left:700px;
+    top:80px;
+}
+75%{ left:1000px;
+     top:50px;
+}
+100%{ left:1200px;
+      top:10px;}
+}
+.image2{
+position:relative;
+height:350;
+width:450;
+top:-600px;}
+.image-animation{position:relative;
+}
+.image3{
+position:relative;
+top:-70px;
+ height:300;
+width:450;
+filter:opacity(0.7);}
+.image-animation3{position:relative;
+left: 20px;
+animation-name:lalit2;
+animation-duration:20s;
+animation-iteration-count:40;
+animation-fill-mode: alternate;
+animation-delay:1s;
+animation-direction:reverse;
+<!--animation-timing-function: ease-in-out;-->}
+ @keyframes lalit2{
+0%{left:1000px;
+    }
+#tem1{border:3px solid white;
+width:100px;
+color:red;
+}
+</style>
+</head>
+<body>
+<div class="container-fluid px-1 px-sm-3 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="main">
+            <div class="card1 col-lg-8 col-md-7"> <small>the.weather</small>
+               <div class="image-animation3"> <img class="image3" src="{{url_for('static', filename='cloud.png') }}"> </div>
+                <div class="image-animation"> <img class="image1" src="{{url_for('static', filename='M8VyA2h.png') }}"> </div>
+
+                <div class="row px-3 mt-3 mb-3">
+                    {%if weather %}
+                    <div id="tem1">
+                    <h1 class="large-font"> {{weather[0]}}° C</h1>
+                    </div>
+
+                    <div class="time">
+                        <h2 id="time1">{{weather[10]}}</h2> <small id="small">{{weather[9]}}</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card2">
+<!--                <div class="row px-3"> <input type="text" name="location" placeholder="Another location" class="mb-5">-->
+
+<!--                </div>-->
+                    <p style="color:black;"><u><i>Weather Details</i></u></p>
+                    <div class="row px-3">
+                        <p class="light-text"><b><i>{{weather[5]}}</i></b></p>
+                        <p class="ml-auto">{{weather[6]}}</p>
+                    </div>
+                    <div class="row px-3">
+                        <p class="light-text"><b><i>Humidity</i></b></p>
+                        <p class="ml-auto">{{weather[7]}}</p>
+                    </div>
+                <div class="row px-3">
+                        <p class="light-text"><b><i>Minimum Temperature</i></b></p>
+                        <p class="ml-auto">{{weather[1]}} °C</p>
+                    </div>
+                <div class="row px-3">
+                        <p class="light-text"><b<i>Maximum Temperature</i></b></p>
+                        <p class="ml-auto">{{weather[2]}}° C</p>
+                    </div>
+                    <div class="row px-3">
+                        <p class="light-text"><b><i>Wind</i></b></p>
+                        <p class="ml-auto">{{weather[8]}}</p>
+                    </div>
+                    <div class="row px-3">
+                        <p class="light-text"><b><i>Rain</i></b></p>
+                        <p class="ml-auto">0mm</p>
+                    </div>
+                    <div class="line mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    {% endif %} }
+</div>
+
+</body>
+
+<!--<script src="{{ url_for('static', filename='weather.js') }}"></script>-->
+
+</html>
