@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Text recognization</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  .jumbotron {
+    background-color: #f4511e;
+    color: #fff;
+    height: 800px;
+  }
+  #para1{
+  font-size:31px;
+  margin-bottom: 300px;
+  margin: 235px 0 10px;}
+  #head1{position: relative;
+    top:183px;}
+<!--    body{background-image: url({{ url_for ('static', filename ='luke-chesser-tgrBcf7S_dY-unsplash.jpg') }});-->
+  #main1{border-color:black;
+  border-width:3px;}
+  #main2{position:relative;
+    left: -914px;
+    top: -31px;
+}
+
+
+  </style>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <div id="main2" style="position:relative; left:-921px">
+  <img src="{{url_for('static', filename='logo.png')}}" width="180px" height="100px"/>
+  </div>
+
+  <h1 id="head1"><img src="{{url_for('static', filename='coollogo_com-133151646.png')}}" style="opacity:0.9; border:3px solid orange; border-radius:80px;"></h1>
+
+  <p id="para1" style="font-family:Pacifico; font_size:5px;">Image Text Recognization</p>
+
+  <form class="form-inline" method="post" action="/upload" enctype="multipart/form-data">
+    <div class="input-group">
+      <input type="file" name="file1" class="form-control" size="50" placeholder="place your file here" required>
+      <div class="input-group-btn">
+        <button type="submit" class="btn btn-danger" value='submit'>submit</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+<table style="position:relative; top:-140px;">
+  <tr>
+    <td style="padding:118px;" class="td1"><img src="{{url_for('static', filename='pngegg.png')}}" height="160px" width="160px" /></td>
+    <td style="padding:118px;"  class="td1"><img src="{{url_for('static', filename='scanner.png')}}" height="160px" width="160px" /></td>
+    <td style="padding:118px;" class="td1"><img src="{{url_for('static', filename='pngegg454.png')}}" height="160px" width="160px" /></td>
+    <td style="padding:118px;"  class="td1"><img src="{{url_for('static', filename='aper-computer-icons-optical-character-recognition-analyst-5aba2c8e66db87.0504888015221505424213.png')}}" height="180px" width="160px" /></td>
+    <td style="padding:118px;" class="td1"><img src="{{url_for('static', filename='9989.png')}}" height="160px" width="160px" /></td>
+  </tr>
+</table>
+
+
+
+</body>
+</html>
+
