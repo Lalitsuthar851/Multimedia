@@ -1,0 +1,368 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<title>Weather_app</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+	    <link rel="shortcut icon" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" type="stylesheet/icon">
+
+
+<script src="https://kit.fontawesome.com/c48aa2a6a6.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% load static %}
+    <style>
+ html,
+body * {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+      background-image: url("{% static 'weather/night.jpg' %}");
+     background-size: cover;
+
+
+}
+#my{
+position:relative;
+left:0px;
+right:0px;
+top:0;
+bottom:0px;
+width:120px;
+height:120px;
+}
+
+.container {
+    width: 100%;
+    padding-top: 60px;
+    padding-bottom: 100px
+
+}
+
+.frame {
+    position:relative;
+    top:-100px;
+    height: 565px;
+    width: 430px;
+    background: linear-gradient(rgba(35, 50, 85, 0.75), rgba(35, 43, 85, 0.95)), url("{% static 'weather/baloon 1.jpg' %}"); no-repeat center center;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    border:groove black 1px rgba(255, 259, 255, .5);
+    border-radius: 8px;
+    box-shadow: 0px 6px 9px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: all .5s ease
+}
+
+.frame-long {
+    height: 615px
+}
+
+.frame-short {
+    height: 400px;
+    margin-top: 50px;
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1)
+}
+
+.nav {
+    width: 100%;
+    height: 100px;
+    padding-top: 40px;
+    opacity: 1;
+    transition: all .5s ease
+}
+
+.nav-up {
+    transform: translateY(-100px);
+    opacity: 0
+}
+
+li {
+    padding-left: 10px;
+    font-size: 18px;
+    display: inline;
+    text-align: left;
+    text-transform: uppercase;
+    padding-right: 10px;
+    color: #ffffff
+}
+
+.signin-active a {
+    padding-bottom: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: solid 2px #1059FF;
+    transition: all .25s ease;
+    cursor: pointer
+}
+
+.signin-inactive a {
+    padding-bottom: 0;
+    color: rgba(255, 255, 255, .3);
+    text-decoration: none;
+    border-bottom: none;
+    cursor: pointer
+}
+
+
+
+.form-signin {
+    width: 430px;
+    height: 375px;
+    font-size: 16px;
+    font-weight: 300;
+    padding-left: 37px;
+    padding-right: 37px;
+    padding-top: 55px;
+    transition: opacity .5s ease, transform .5s ease
+}
+
+.form-signin-left {
+    transform: translateX(-400px);
+    opacity: .0
+}
+
+.form-signup {
+    width: 430px;
+    height: 375px;
+    font-size: 16px;
+    font-weight: 300;
+    padding-left: 37px;
+    padding-right: 37px;
+    padding-top: 55px;
+    position: relative;
+    top: -375px;
+    left: 400px;
+    opacity: 0;
+    transition: all .5s ease
+}
+
+.form-signup-left {
+    transform: translateX(-399px);
+    opacity: 1
+}
+
+.form-signup-down {
+    top: 0px;
+    opacity: 0
+}
+
+.success {
+    width: 80%;
+    height: 150px;
+    text-align: center;
+    position: relative;
+    top: -890px;
+    left: 450px;
+    opacity: .0;
+    transition: all .8s .4s ease
+}
+
+
+
+
+
+#check path {
+    stroke: #ffffff;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: .85px;
+    stroke-dasharray: 60px 300px;
+    stroke-dashoffset: -166px;
+    fill: rgba(255, 255, 255, .0);
+    transition: stroke-dashoffset 2s ease .5s, fill 1.5s ease 1.0s
+}
+
+#check.checked path {
+    stroke-dashoffset: 33px;
+    fill: rgba(255, 255, 255, .03)
+}
+
+.form-signin input,
+.form-signup input {
+    color: #ffffff;
+    font-size: 13px
+}
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+   font-weight: normal;
+  opacity:1; /* Firefox */}
+.form-styling {
+
+
+
+    width: 100%;
+    height: 35px;
+    padding-left: 15px;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    background: rgba(200,200, 200, .2)
+
+}
+
+label {
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    color: rgba(255, 255, 255, .7);
+    display: block
+}
+
+:focus {
+    outline: none
+}
+
+.form-signin input:focus,
+textarea:focus,
+.form-signup input:focus,
+textarea:focus {
+    background: rgba(255, 255, 255, .3);
+    border: none;
+    padding-right: 40px;
+    transition: background .5s ease
+}
+
+
+}
+
+
+.btn-signin {
+    float: left;
+    padding-top: 8px;
+    width: 100%;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    margin-top: -8px
+}
+
+.btn-animate {
+    float: left;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    padding-top: 8px;
+    width: 100%;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    margin-top: 23px;
+    background-color: rgba(16, 89, 255, 1);
+    left: 0px;
+    top: 0px;
+    transition: all .5s ease, top .5s ease .5s, height .5s ease .5s, background-color .5s ease .75s
+}
+#ip{ background-color: rgba(16, 89, 255, 1);
+color: rgba(255, 255, 255, 1);
+ border: none;
+ font-weight: bold;
+font-family: Georgia, serif;
+font-size:17px;
+}
+
+
+
+
+
+
+.cover-photo-down {
+    top: -575px;
+    opacity: 1
+}
+
+
+
+.profile-photo-down {
+    top: -636px;
+    opacity: 1
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 35px;
+    font-weight: 300;
+    text-align: center
+}
+
+
+}
+
+
+
+#para{
+position:relative;
+left:-1px;
+right:-4px
+}
+#live{
+font-family:DancingScript-Medium;
+text-shadow: 4px 5px black;}
+#logo{position:relative;
+top:-145px;
+left:125px;}
+#my{position:relative;
+left:10px;
+top:-60px;}
+h4{
+
+  font-size: 15px;
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+position:relative;
+top:-80px;
+left:20px;
+
+
+}
+<!--#icon{position:relative;-->
+<!--left:10px;-->
+<!--right:0px;-->
+<!--top:-60px;-->
+<!--bottom:0px;-->
+<!--width:120px;-->
+<!--height:120px;}-->
+#small1{color:red;
+position:relative;
+top:-13px;
+left:15px;
+font-size:12px;
+height:2px;}
+
+    </style>
+    </head>
+<body>
+<div class="container">
+    <img id="my" src="{% static  'weather/logo1.png'%}"/>
+    <h4 class="h4"><i>The weather</i><i class="fas fa-cloud-sun"></i></h4>
+
+    <div class="frame">
+        <div class="nav">
+            <h1 id="live"> Live Weather</h1>
+        </div>
+        <div ng-app ng-init="checked = false">
+            <form class="form-signin" action="/Weather/" method="post" name="form">{% csrf_token %}
+
+                <label for="City Name"><b>City
+                Name </b></label> <input class="form-styling" type="text" name="CITY" placeholder="Enter city name"
+                                        required="required">
+
+                <div class="btn-animate"><input id="ip" type="submit" value="search"></div>
+            </form>
+        </div>
+        <div id="logo">
+            <img height="190px" width="190px" src="{% static 'weather/logo4.png' %}"/>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
